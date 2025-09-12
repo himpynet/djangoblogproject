@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Technology Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container my-3">
+            <h1 class="text-center">Latest Blog Posts</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for post in allPosts %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{post.title | truncatechars:30}}</h5>
+                            <!-- <i class="bi bi-whatsapp"></i> -->
+                            <!-- <a href="https://google.com"><i class="bi bi-whatsapp"></i></a> -->
+                            <span class="badge text-bg-dark">{{post.author}}</span>
+                            <p class="card-text">{{post.newcontent | truncatechars:200 | safe}}</p>
+                            <a href="{% url 'blogpost' post.slug %}" class="btn btn-primary">Read Full Article</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
